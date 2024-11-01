@@ -21,9 +21,14 @@ int main(int argc, char *argv[]) {
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L); // Verify the peer's SSL certificate
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L); // Verify the certificate hostname
 
-        // Add a custom header
+        // Add custom headers
         struct curl_slist *headers = NULL;
-        headers = curl_slist_append(headers, "Custom-Header: CustomValue");
+        headers = curl_slist_append(headers, "origin: https://acas.edu.bd");
+        headers = curl_slist_append(headers, "referer: https://acas.edu.bd/");
+        headers = curl_slist_append(headers, "sec-ch-ua: \"Chromium\";v=\"130\", \"Brave\";v=\"130\", \"Not?A_Brand\";v=\"99\"");
+        headers = curl_slist_append(headers, "sec-ch-ua-mobile: ?0");
+        headers = curl_slist_append(headers, "sec-ch-ua-platform: \"Windows\"");
+        headers = curl_slist_append(headers, "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         // Perform the request
